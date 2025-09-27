@@ -16,7 +16,6 @@ public class GlobalExceptionHandler : IExceptionHandler
     private static readonly Dictionary<Type, (int StatusCode, string Title)> ExceptionMap = new()
     {
         { typeof(ValidationException), ((int)HttpStatusCode.BadRequest, "Validation error") },
-        //{ typeof(TaskAccessException), ((int)HttpStatusCode.NotFound, "Task not found or access denied") },
         { typeof(UnauthorizedAccessException), ((int)HttpStatusCode.Unauthorized, "Access denied") }
     };
 

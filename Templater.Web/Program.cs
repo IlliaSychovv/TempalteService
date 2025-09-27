@@ -1,6 +1,5 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Templater.Application.Interfaces.Repositories;
 using Templater.Application.Interfaces.Services;
@@ -9,8 +8,19 @@ using Templater.Application.Validators;
 using Templater.Infrastructure.Data;
 using Templater.Infrastructure.Repositories;
 using Templater.Infrastructure.Services;
+using Templater.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -21,6 +31,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateTemplateValidator>();
 
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddScoped<ITemplaterRepository, TemplaterRepository>();
 builder.Services.AddScoped<ITemplaterService, TemplaterService>();
@@ -35,19 +48,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandler(appBuilder =>
-{
-    appBuilder.Run(async context =>
-    {
-        var exceptionHandler = context.RequestServices.GetRequiredService<IExceptionHandler>();
-        var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
-        if (exceptionHandlerFeature != null)
-        {
-            var ex = exceptionHandlerFeature.Error;
-            await exceptionHandler.TryHandleAsync(context, ex, CancellationToken.None);
-        }
-    });
-});
+app.UseCors("AllowReactApp");
+
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
