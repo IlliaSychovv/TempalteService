@@ -23,11 +23,40 @@ export function EditTemplateForm({ template, onSuccess, onCancel }: EditTemplate
     });
   }, [template]);
 
+  const validateForm = (): string | null => {
+    if (!formData.name.trim()) {
+      return 'Name is required';
+    }
+    
+    if (formData.name.length > 50) {
+      return 'Name must not exceed 50 characters';
+    }
+    
+    if (!formData.htmlContent.trim()) {
+      return 'HTML content cannot be empty';
+    }
+    
+    // Check for HTML tags
+    const htmlTagRegex = /<.*?>/;
+    if (!htmlTagRegex.test(formData.htmlContent)) {
+      return 'HTML content must contain at least one HTML tag (e.g., <div>, <p>, <h1>)';
+    }
+    
+    // Check for Razor placeholders
+    const razorPlaceholderRegex = /@Model\[".+?"\]/;
+    if (!razorPlaceholderRegex.test(formData.htmlContent)) {
+      return 'HTML content must contain at least one Razor placeholder like @Model["key"]';
+    }
+    
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.htmlContent.trim()) {
-      alert('Fill in all fields');
+    const validationError = validateForm();
+    if (validationError) {
+      alert(validationError);
       return;
     }
 
@@ -36,8 +65,9 @@ export function EditTemplateForm({ template, onSuccess, onCancel }: EditTemplate
       await TemplaterApi.updateTemplate(template.id, formData);
       onSuccess();
     } catch (err) {
-      alert('Template update error');
-      console.error(err);
+      console.error('Template update error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      alert(`Template update error: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
@@ -79,7 +109,8 @@ export function EditTemplateForm({ template, onSuccess, onCancel }: EditTemplate
 <h1>Welcome!</h1>
 <p>Hello, @Model["name"]!</p>
 <p>Your age: @Model["age"]</p>
-<div>Company: @Model["company"]</div>`}
+<div>Company: @Model["company"]</div>
+<p>Thank you for using our service!</p>`}
             rows={10}
             disabled={loading}
           />

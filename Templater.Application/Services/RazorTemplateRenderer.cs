@@ -1,7 +1,7 @@
 using RazorLight;
 using Templater.Application.Interfaces.Services;
 
-namespace Templater.Infrastructure.Services;
+namespace Templater.Application.Services;
 
 public class RazorTemplateRenderer : IRazorTemplateRenderer
 {

@@ -12,7 +12,7 @@ public class CreateTemplateValidator : AbstractValidator<CreateTemplateDto>
             .NotEmpty().WithMessage("Name is required")
             .NotNull().WithMessage("Name is required")
             .MaximumLength(50).WithMessage("Name must not exceed 50 characters");
-        
+
         RuleFor(x => x.HtmlContent)
             .NotEmpty().WithMessage("HtmlContent cannot be empty")
             .Must(ContainHtmlTags).WithMessage("HtmlContent must contain at least one HTML tag")

@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templater.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templater.Application", "Templater.Application\Templater.Application.csproj", "{B16AD129-7127-43EC-9C1E-D4854CA5C831}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templater.Tests", "Templater.Tests\Templater.Tests.csproj", "{7CD18A69-2189-47C4-BDCF-AA795841DC06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{B16AD129-7127-43EC-9C1E-D4854CA5C831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B16AD129-7127-43EC-9C1E-D4854CA5C831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B16AD129-7127-43EC-9C1E-D4854CA5C831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CD18A69-2189-47C4-BDCF-AA795841DC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD18A69-2189-47C4-BDCF-AA795841DC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD18A69-2189-47C4-BDCF-AA795841DC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD18A69-2189-47C4-BDCF-AA795841DC06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

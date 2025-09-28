@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Templater.Application.Interfaces;
 using Templater.Application.Interfaces.Repositories;
 using Templater.Domain.Entities;
 using Templater.Infrastructure.Data;
@@ -25,17 +24,17 @@ public class TemplaterRepository : ITemplaterRepository
             .Take(pageSize)
             .ToListAsync();
     }
+    
+    public async Task<int> CountTemplatesAsync()
+    {
+        return await _context.Templates.CountAsync();
+    }
 
     public async Task<Template?> GetTemplateByIdAsync(Guid id)
     {
         return await _context.Templates
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id);
-    }
-
-    public async Task<int> CountTemplatesAsync()
-    {
-        return await _context.Templates.CountAsync();
     }
 
     public async Task AddTemplateAsync(Template template)

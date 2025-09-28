@@ -7,7 +7,6 @@ using Templater.Application.Services;
 using Templater.Application.Validators;
 using Templater.Infrastructure.Data;
 using Templater.Infrastructure.Repositories;
-using Templater.Infrastructure.Services;
 using Templater.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);

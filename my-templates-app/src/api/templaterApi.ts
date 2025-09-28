@@ -23,7 +23,11 @@ export class TemplaterApi {
       },
       body: JSON.stringify(template),
     });
-    if (!response.ok) throw new Error('Failed to create template');
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const errorMessage = errorData.detail || errorData.message || 'Failed to create template';
+      throw new Error(errorMessage);
+    }
     return response.json();
   }
 
@@ -35,7 +39,11 @@ export class TemplaterApi {
       },
       body: JSON.stringify(template),
     });
-    if (!response.ok) throw new Error('Failed to update template');
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const errorMessage = errorData.detail || errorData.message || 'Failed to update template';
+      throw new Error(errorMessage);
+    }
   }
 
   static async deleteTemplate(id: string): Promise<void> {

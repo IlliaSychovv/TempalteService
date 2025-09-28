@@ -12,8 +12,8 @@ using Templater.Infrastructure.Data;
 namespace Templater.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250926174157_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250928134254_InitialCreate2")]
+    partial class InitialCreate2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

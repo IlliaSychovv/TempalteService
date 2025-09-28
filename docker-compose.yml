@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: templater-postgres
+    environment:
+      POSTGRES_DB: templater
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: i1112006s
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: templater-api
+    working_dir: /app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=templater;Username=postgres;Password=i1112006s
+    ports:
+      - "5135:80"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    command: >
+      bash -c "
+        dotnet restore &&
+        dotnet run --project Templater.Web --urls=http://+:80
+      "
+
+volumes:
+  postgres_data:

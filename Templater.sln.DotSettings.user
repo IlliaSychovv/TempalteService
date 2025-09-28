@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eb831783_002Da594_002D4cd5_002D883f_002D7c893dd04ce3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TemplaterServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7CD18A69-2189-47C4-BDCF-AA795841DC06::net8.0::TestProject1.UnitTests.RazorTemplateRendererTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7CD18A69-2189-47C4-BDCF-AA795841DC06::net8.0::TestProject1.UnitTests.TemplaterServiceTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7CD18A69-2189-47C4-BDCF-AA795841DC06::net8.0::TestProject1.RazorTemplateRendererTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7CD18A69-2189-47C4-BDCF-AA795841DC06::net8.0::TestProject1.PdfGeneratorTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7CD18A69-2189-47C4-BDCF-AA795841DC06::net8.0::TestProject1.UnitTests.PdfGeneratorTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

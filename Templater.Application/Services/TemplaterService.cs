@@ -1,7 +1,6 @@
 using Mapster;
 using SequentialGuid;
 using Templater.Application.DTO;
-using Templater.Application.Interfaces;
 using Templater.Application.Interfaces.Repositories;
 using Templater.Domain.Entities;
 
@@ -51,7 +50,7 @@ public class TemplaterService : ITemplaterService
     {
         var template = await _templaterRepository.GetTemplateByIdAsync(id);
         template.Name = dto.Name;
-        template.HtmlContent = dto.HtmlContent;
+        template.HtmlContent = dto.HtmlContent; 
         template.ModifiedAt = DateTime.UtcNow;
         
         await _templaterRepository.UpdateTemplateAsync(template);

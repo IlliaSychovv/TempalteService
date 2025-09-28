@@ -44,7 +44,7 @@ public class TemplaterController : ControllerBase
 
         var html = await _razorTemplateRenderer.RenderAsync(template.HtmlContent, dto.Data);
 
-        var pdfBytes = await _pdfGenerator.GeneratePdfAsync(html);
+        var pdfBytes = _pdfGenerator.GeneratePdfAsync(html);
 
         return File(pdfBytes, "application/pdf", $"{template.Name}.pdf");
     }
